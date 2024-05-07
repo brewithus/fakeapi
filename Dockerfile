@@ -19,4 +19,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5050
 
 # Set the command to run the Flask app
-CMD ["python", "main.py"]
+CMD ["gunicorn","--config", "gunicorn_config.py", "main:app"]
