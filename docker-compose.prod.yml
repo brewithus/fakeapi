@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - app
+    networks:
+      - backend
+    restart: unless-stopped
+
+networks:
+  backend:
+    name: brewithus
+    driver: bridge
